@@ -30,6 +30,9 @@ from rdabase import (
     data_dir,
     cycle,
     geoid_field,
+    index_data,
+    Point,
+    mkPoints,
 )
 
 
@@ -59,24 +62,16 @@ def main() -> None:
 
     ### JOIN THEM BY GEOID & SUBSET THE FIELDS ###
 
-    # TODO
-    points: List[Dict] = list()
-
-    for row in data:
-        point = dict()
-        geoid: str = str(row[geoid_field])
-
-        point["GEOID"] = geoid
-        point["POP"] = row["TOTAL_POP"]
-        point["X"] = shapes[geoid]["center"][0]
-        point["Y"] = shapes[geoid]["center"][1]
-
-        points.append(point)
+    indexed_data: Dict[str, Dict[str, str | int]] = index_data(data)
+    points: List[Point] = mkPoints(indexed_data, shapes)
 
     ### WRITE THE COMBINED DATA AS A CSV ###
 
+    points_out: List[Dict[str, str | int | float]] = [
+        {"GEOID": p.geoid, "POP": p.pop, "X": p.ll.long, "Y": p.ll.lat} for p in points
+    ]
     output_path: str = dest_dir + file_name([xx, cycle, "points"], "_", "csv")
-    write_csv(output_path, points, ["GEOID", "POP", "X", "Y"], precision="{:.14f}")
+    write_csv(output_path, points_out, ["GEOID", "POP", "X", "Y"], precision="{:.14f}")
 
 
 def parse_args() -> Namespace:
