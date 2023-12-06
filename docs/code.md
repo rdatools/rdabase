@@ -1,6 +1,6 @@
 # Shared Code
 
-This shared code is in the `rdadata` package:
+This shared code is in the `rdabase` package:
 
 - **constants.py** - many recurring constants, e.g., state FIPS codes
 - **readwrite.py** - utilities to read and write files - FileSpec, file_name, path_to_file, read_csv, write_csv, read_json,write_json, read_shapes, write_pickle, read_pickle, smart_open

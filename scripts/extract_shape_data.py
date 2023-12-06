@@ -20,7 +20,7 @@ from argparse import ArgumentParser, Namespace
 from typing import Any, List, Dict, Tuple, Optional
 from shapely.geometry import Polygon, MultiPolygon, Point
 
-from rdadata import (
+from rdabase import (
     path_to_file,
     file_name,
     read_json,

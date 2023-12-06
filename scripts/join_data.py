@@ -18,7 +18,7 @@ from argparse import ArgumentParser, Namespace
 
 from typing import Dict, List
 
-from rdadata import (
+from rdabase import (
     path_to_file,
     file_name,
     read_csv,

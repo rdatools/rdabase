@@ -18,7 +18,7 @@ import os
 import argparse
 from argparse import ArgumentParser, Namespace
 
-from rdadata import path_to_file, file_name, read_json, FileSpec, data_dir, cycle, Graph
+from rdabase import path_to_file, file_name, read_json, FileSpec, data_dir, cycle, Graph
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-# rdadata
+# rdabase
 Redistricting analytics data &amp; shared code
 
 ## Installation
@@ -6,14 +6,14 @@ Redistricting analytics data &amp; shared code
 To get the data locally, clone the repository:
 
 ```bash
-$ git clone https://github.com/alecramsay/rdadata
-$ cd rdadata
+$ git clone https://github.com/alecramsay/rdabase
+$ cd rdabase
 ```
 
 To use the shared code, install the package:
 
 ```bash
-$ pip install rdadata
+$ pip install rdabase
 ```
 
 ## Data

@@ -12,20 +12,20 @@ $ python3 -m pip install --upgrade twine
 Each iteration:
 
 $ python3 -m build
-$ python3 -m twine upload --repository pypi dist/rdadata-x.y.z*.*
+$ python3 -m twine upload --repository pypi dist/rdabase-x.y.z*.*
 
 """
 
 setup(
-    name="rdadata",
+    name="rdabase",
     version="1.2.3",
     description="Redistricting analytics data",
-    url="https://github.com/dra2020/rdadata",
+    url="https://github.com/dra2020/rdabase",
     author="alecramsay",
     author_email="a73cram5ay@gmail.com",
     license="MIT",
     packages=[
-        "rdadata",
+        "rdabase",
     ],
     install_requires=[
         "fiona",

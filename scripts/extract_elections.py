@@ -19,7 +19,7 @@ from argparse import ArgumentParser, Namespace
 from csv import DictReader
 from typing import Any
 
-from rdadata import (
+from rdabase import (
     path_to_file,
     file_name,
     read_json,

@@ -1,4 +1,4 @@
-# rdadata/__init__.py
+# rdabase/__init__.py
 
 from .constants import *
 from .readwrite import (
@@ -35,4 +35,4 @@ from .energy import (
 from .requireargs import require_args
 from .misc import starting_seed
 
-name: str = "rdadata"
+name: str = "rdabase"

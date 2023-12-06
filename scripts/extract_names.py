@@ -16,7 +16,7 @@ $ scripts/extract_names.py -h
 import argparse
 from argparse import ArgumentParser, Namespace
 
-from rdadata import (
+from rdabase import (
     path_to_file,
     file_name,
     STATE_FIPS,

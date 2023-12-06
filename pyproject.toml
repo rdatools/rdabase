@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rdadata"
+name = "rdabase"
 version = "1.2.3"
 authors = [
   { name="Alec Ramsay", email="a73cram5ay@gmail.com" },
@@ -19,5 +19,5 @@ classifiers = [
 dynamic = ["license", "dependencies"]
 
 [project.urls]
-"Homepage" = "https://github.com/dra2020/rdadata"
-"Bug Tracker" = "https://github.com/dra2020/rdadata/issues"
+"Homepage" = "https://github.com/dra2020/rdabase"
+"Bug Tracker" = "https://github.com/dra2020/rdabase/issues"
