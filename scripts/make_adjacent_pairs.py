@@ -18,7 +18,18 @@ import os
 import argparse
 from argparse import ArgumentParser, Namespace
 
-from rdabase import path_to_file, file_name, read_json, FileSpec, data_dir, cycle, Graph
+from typing import List, Dict, Tuple
+
+from rdabase import (
+    path_to_file,
+    file_name,
+    read_json,
+    FileSpec,
+    data_dir,
+    cycle,
+    Graph,
+    mkAdjacencies,
+)
 
 
 def main() -> None:
@@ -46,9 +57,9 @@ def main() -> None:
     abs_path: str = FileSpec(pairs_path).abs_path
 
     with open(abs_path, "w") as f:
-        for one, two in graph.adjacencies():
-            if one != "OUT_OF_STATE" and two != "OUT_OF_STATE":
-                print(f"{one},{two}", file=f)
+        adjacencies: List[Tuple[str, str]] = mkAdjacencies(graph)
+        for one, two in adjacencies:
+            print(f"{one},{two}", file=f)
 
 
 def parse_args() -> Namespace:

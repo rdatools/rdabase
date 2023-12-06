@@ -20,6 +20,7 @@ def total_population(pop_by_geoid: Dict[str, int]) -> int:
     return total_pop
 
 
+# TODO
 def calc_population_deviation(
     plan: List[Dict[str, str | int]],
     pop_by_geoid: Dict[str, int],

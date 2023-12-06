@@ -59,6 +59,7 @@ def main() -> None:
 
     ### JOIN THEM BY GEOID & SUBSET THE FIELDS ###
 
+    # TODO
     points: List[Dict] = list()
 
     for row in data:
