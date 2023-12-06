@@ -15,7 +15,7 @@ class LatLong(NamedTuple):
     long: float
 
 
-class Point(NamedTuple):
+class IndexedPoint(NamedTuple):
     ll: LatLong
     pop: float
 
@@ -88,14 +88,14 @@ def index_data(data: List[Dict[str, str | int]]) -> Dict[str, Dict[str, str | in
 def index_points(
     points: List[Dict[str, Any]],
     epsilon: float = 0.01,
-) -> List[Point]:
+) -> List[IndexedPoint]:
     """Index points by GEOID offset."""
 
-    ps: List[Point] = list()
+    ps: List[IndexedPoint] = list()
     for p in points:
         ll: LatLong = LatLong(p["Y"], p["X"])
         pop: float = max(epsilon, p["POP"])
-        ps.append(Point(ll, pop))
+        ps.append(IndexedPoint(ll, pop))
 
     assert epsilon > 0 or sum(p.pop for p in ps) == sum(p["POP"] for p in points)
 
@@ -168,7 +168,7 @@ def report_disconnect(pairs: List[Tuple[str, str]], geoids: Set[str], msg: str):
 
 
 def calc_energy(
-    assignments: List[IndexedWeightedAssignment], points: List[Point]
+    assignments: List[IndexedWeightedAssignment], points: List[IndexedPoint]
 ) -> float:
     """Calculate the energy of a map."""
 
@@ -189,7 +189,7 @@ def squared_distance(a: LatLong, b: LatLong) -> float:
 
 
 def get_centroids(
-    assigns: List[IndexedWeightedAssignment], points: List[Point]
+    assigns: List[IndexedWeightedAssignment], points: List[IndexedPoint]
 ) -> List[LatLong]:
     bysite: defaultdict[int, List[IndexedWeightedAssignment]] = defaultdict(list)
     for a in assigns:

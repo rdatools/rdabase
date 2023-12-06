@@ -18,7 +18,7 @@ import argparse
 from argparse import ArgumentParser, Namespace
 
 from typing import Any, List, Dict, Tuple, Optional
-from shapely.geometry import Polygon, MultiPolygon, Point
+from shapely.geometry import Polygon, MultiPolygon, IndexedPoint
 
 from rdabase import (
     path_to_file,
@@ -40,8 +40,8 @@ def find_center(shp) -> Tuple[float, float]:
     x: float = shp.centroid.x
     y: float = shp.centroid.y
 
-    if not shp.contains(Point(x, y)):
-        pt: Point = shp.representative_point()
+    if not shp.contains(IndexedPoint(x, y)):
+        pt: IndexedPoint = shp.representative_point()
         x: float = pt.x
         y: float = pt.y
 
