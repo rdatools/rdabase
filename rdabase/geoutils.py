@@ -2,8 +2,6 @@
 GEO UTILITIES
 """
 
-from functools import wraps
-
 
 class GeoID:
     """Parse a 15-character GeoIDs into its component parts."""

@@ -34,6 +34,6 @@ from .energy import (
     calc_energy,
 )
 from .requireargs import require_args
-from .misc import starting_seed
+from .misc import Assignment, starting_seed
 
 name: str = "rdabase"
