@@ -29,7 +29,7 @@ from .energy import (
     index_assignments,
     LatLong,
     Point,
-    Assignment,
+    IndexedWeightedAssignment,
     calc_energy,
 )
 from .requireargs import require_args

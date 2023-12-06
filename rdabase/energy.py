@@ -20,7 +20,7 @@ class Point(NamedTuple):
     pop: float
 
 
-class Assignment(NamedTuple):
+class IndexedWeightedAssignment(NamedTuple):
     site: int
     point: int
     pop: float
@@ -125,15 +125,15 @@ def index_assignments(
     assignments: List[Dict[str, str | int]],
     offset_by_geoid: Dict[str, int],
     pop_by_geoid: Dict[str, int],
-) -> List[Assignment]:
+) -> List[IndexedWeightedAssignment]:
     """Index assignments by GEOID offset."""
 
-    indexed_assignments: List[Assignment] = list()
+    indexed_assignments: List[IndexedWeightedAssignment] = list()
     for p in assignments:
         geoid: str = str(p[geoid_field])
         district: int = int(p["DISTRICT"])  # NOTE - Assume 1-N districts for simplicity
 
-        indexed: Assignment = Assignment(
+        indexed: IndexedWeightedAssignment = IndexedWeightedAssignment(
             site=district - 1,
             point=offset_by_geoid[geoid],
             pop=float(pop_by_geoid[geoid]),
@@ -167,7 +167,9 @@ def report_disconnect(pairs: List[Tuple[str, str]], geoids: Set[str], msg: str):
 #
 
 
-def calc_energy(assignments: List[Assignment], points: List[Point]) -> float:
+def calc_energy(
+    assignments: List[IndexedWeightedAssignment], points: List[Point]
+) -> float:
     """Calculate the energy of a map."""
 
     sites: List[LatLong] = get_centroids(assignments, points)
@@ -186,14 +188,16 @@ def squared_distance(a: LatLong, b: LatLong) -> float:
     return (a.lat - b.lat) * (a.lat - b.lat) + (a.long - b.long) * (a.long - b.long)
 
 
-def get_centroids(assigns: List[Assignment], points: List[Point]) -> List[LatLong]:
-    bysite: defaultdict[int, List[Assignment]] = defaultdict(list)
+def get_centroids(
+    assigns: List[IndexedWeightedAssignment], points: List[Point]
+) -> List[LatLong]:
+    bysite: defaultdict[int, List[IndexedWeightedAssignment]] = defaultdict(list)
     for a in assigns:
         bysite[a.site].append(a)
     cs: List[LatLong] = []
     top: int = max(s for s in bysite.keys())
     for site in range(top + 1):
-        persite: List[Assignment] = bysite[site]
+        persite: List[IndexedWeightedAssignment] = bysite[site]
         total: float = sum(a.pop for a in persite)
         lat: float = sum(points[a.point].ll.lat * a.pop for a in persite) / total
         long: float = sum(points[a.point].ll.long * a.pop for a in persite) / total
