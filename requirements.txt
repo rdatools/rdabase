@@ -1,0 +1,7 @@
+fiona
+geopandas
+libpysal
+pytest
+scipy
+setuptools
+shapely
