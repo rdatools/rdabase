@@ -1,5 +1,5 @@
 """
-ENERGY-related helper functions
+ENERGY-related helpers
 """
 
 from collections import defaultdict
@@ -13,6 +13,12 @@ from .constants import geoid_field
 class LatLong(NamedTuple):
     lat: float
     long: float
+
+
+class Point(NamedTuple):
+    geoid: str
+    pop: float
+    ll: LatLong
 
 
 class IndexedPoint(NamedTuple):

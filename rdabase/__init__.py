@@ -28,6 +28,7 @@ from .energy import (
     index_pairs,
     index_assignments,
     LatLong,
+    Point,
     IndexedPoint,
     IndexedWeightedAssignment,
     calc_energy,
