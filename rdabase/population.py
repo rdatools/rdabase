@@ -5,6 +5,8 @@ POPULATION-related helper functions
 from collections import defaultdict
 from typing import List, Dict
 
+from .misc import Assignment
+
 
 def populations(data: Dict[str, Dict[str, int]]) -> Dict[str, int]:
     """Return a dictionary of geoid -> population."""
@@ -20,9 +22,8 @@ def total_population(pop_by_geoid: Dict[str, int]) -> int:
     return total_pop
 
 
-# TODO
 def calc_population_deviation(
-    plan: List[Dict[str, str | int]],
+    plan: List[Assignment],
     pop_by_geoid: Dict[str, int],
     total_pop: int,
     n_districts: int,
@@ -32,9 +33,7 @@ def calc_population_deviation(
     pop_by_district: defaultdict[int | str, int] = defaultdict(int)
 
     for p in plan:
-        geoid: str = str(p["GEOID"])
-        district: int = int(p["DISTRICT"])
-        pop_by_district[district] += pop_by_geoid[geoid]
+        pop_by_district[p.district] += pop_by_geoid[p.geoid]
 
     max_pop: int = max(pop_by_district.values())
     min_pop: int = min(pop_by_district.values())
