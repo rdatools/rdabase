@@ -6,6 +6,7 @@ from collections import defaultdict
 from typing import List, Dict, Tuple, Set, Any, NamedTuple
 
 from .graph import Graph
+from .misc import Assignment
 from .union_find import StrUnionFind, IntUnionFind
 from .constants import geoid_field
 
@@ -124,7 +125,7 @@ def index_pairs(
 
 
 def index_assignments(
-    assignments: List[Dict[str, str | int]],
+    assignments: List[Assignment],
     offset_by_geoid: Dict[str, int],
     pop_by_geoid: Dict[str, int],
 ) -> List[IndexedWeightedAssignment]:
@@ -132,13 +133,10 @@ def index_assignments(
 
     indexed_assignments: List[IndexedWeightedAssignment] = list()
     for p in assignments:
-        geoid: str = str(p[geoid_field])
-        district: int = int(p["DISTRICT"])  # NOTE - Assume 1-N districts for simplicity
-
         indexed: IndexedWeightedAssignment = IndexedWeightedAssignment(
-            site=district - 1,
-            point=offset_by_geoid[geoid],
-            pop=float(pop_by_geoid[geoid]),
+            site=int(p.district) - 1,
+            point=offset_by_geoid[p.geoid],
+            pop=float(pop_by_geoid[p.geoid]),
         )
         indexed_assignments.append(indexed)
 
