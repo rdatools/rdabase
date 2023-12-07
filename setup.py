@@ -18,7 +18,7 @@ $ python3 -m twine upload --repository pypi dist/rdabase-x.y.z*.*
 
 setup(
     name="rdabase",
-    version="2.0.2",
+    version="2.0.3",
     description="Redistricting analytics data",
     url="https://github.com/dra2020/rdabase",
     author="alecramsay",

@@ -40,7 +40,7 @@ def mkPoints(
     data: Dict[str, Dict[str, str | int]],  # indexed by GEOID
     shapes: Dict[str, Any],
 ) -> List[Point]:
-    """Join precinct population with x,y location by GEOID."""
+    """Join population from precinct data with x,y location from precinct shapes by GEOID."""
 
     points: List[Point] = list()
 
@@ -54,6 +54,8 @@ def mkPoints(
 
 
 def mkAdjacencies(graph: Graph) -> List[Tuple[str, str]]:
+    """Convert an adjacency graph to a list of pairs of adjacent GEOIDs."""
+
     adjacencies: List[Tuple[str, str]] = list()
     for one, two in graph.adjacencies():
         if one != "OUT_OF_STATE" and two != "OUT_OF_STATE":
@@ -66,16 +68,16 @@ def mkAdjacencies(graph: Graph) -> List[Tuple[str, str]]:
 
 
 def index_geoids(
-    points: List[Dict[str, Any]],
+    points: List[Point],
 ) -> Dict[str, int]:
-    """Index GEOIDs by offset."""
+    """Index point GEOIDs by offset."""
 
-    offset_by_geoid: Dict[str, int] = {p[geoid_field]: i for i, p in enumerate(points)}
+    offset_by_geoid: Dict[str, int] = {p.geoid: i for i, p in enumerate(points)}
     return offset_by_geoid
 
 
 def index_data(data: List[Dict[str, str | int]]) -> Dict[str, Dict[str, str | int]]:
-    """Index precinct data by GEOID"""
+    """Index precinct data by GEOID. For making points."""
 
     indexed: Dict[str, Dict[str, str | int]] = dict()
     for row in data:
@@ -89,18 +91,16 @@ def index_data(data: List[Dict[str, str | int]]) -> Dict[str, Dict[str, str | in
 
 
 def index_points(
-    points: List[Dict[str, Any]],
+    points: List[Point],
     epsilon: float = 0.01,
 ) -> List[IndexedPoint]:
     """Index points by GEOID offset."""
 
     ps: List[IndexedPoint] = list()
     for p in points:
-        ll: LatLong = LatLong(p["Y"], p["X"])
-        pop: float = max(epsilon, p["POP"])
-        ps.append(IndexedPoint(ll, pop))
+        ps.append(IndexedPoint(p.ll, p.pop))
 
-    assert epsilon > 0 or sum(p.pop for p in ps) == sum(p["POP"] for p in points)
+    assert epsilon > 0 or sum(p.pop for p in ps) == sum(p.pop for p in points)
 
     return ps
 
@@ -109,7 +109,7 @@ def index_pairs(
     offset_by_geoid: Dict[str, int],
     pairs: List[Tuple[str, str]],
 ) -> List[Tuple[int, int]]:
-    """Index adjacent pairs by GEOID offset."""
+    """Index adjacent pairs of precincts by GEOID offset."""
 
     pairs = [
         (p1, p2) for p1, p2 in pairs if p1 != "OUT_OF_STATE" and p2 != "OUT_OF_STATE"
@@ -129,7 +129,7 @@ def index_assignments(
     offset_by_geoid: Dict[str, int],
     pop_by_geoid: Dict[str, int],
 ) -> List[IndexedWeightedAssignment]:
-    """Index assignments by GEOID offset."""
+    """Index precinct assignments to districts by GEOID offset."""
 
     indexed_assignments: List[IndexedWeightedAssignment] = list()
     for p in assignments:
