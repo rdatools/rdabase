@@ -8,10 +8,10 @@ from typing import List, Dict
 from .misc import Assignment
 
 
-def populations(data: Dict[str, Dict[str, int]]) -> Dict[str, int]:
+def populations(data: Dict[str, Dict[str, int | str]]) -> Dict[str, int]:
     """Return a dictionary of geoid -> population."""
 
-    pop_by_geoid: Dict[str, int] = {k: v["TOTAL_POP"] for (k, v) in data.items()}
+    pop_by_geoid: Dict[str, int] = {k: int(v["TOTAL_POP"]) for (k, v) in data.items()}
     return pop_by_geoid
 
 
