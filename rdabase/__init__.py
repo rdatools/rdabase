@@ -15,7 +15,12 @@ from .readwrite import (
     smart_open,
 )
 from .timers import Timer, time_function
-from .approxequal import approx_equal, dict_approx_equal
+from .approxequal import (
+    approx_equal,
+    dict_approx_equal,
+    matrix_approx_equal,
+    vector_approx_equal,
+)
 from .geoutils import GeoID, study_unit, unit_id
 from .graph import Graph, is_connected, read_mods
 from .population import populations, total_population, calc_population_deviation
