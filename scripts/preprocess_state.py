@@ -19,6 +19,8 @@ NOTE - Before running this script for a state, you have to create a config file 
 import argparse
 from argparse import ArgumentParser, Namespace
 
+from typing import Any, List, Dict
+
 import os
 
 

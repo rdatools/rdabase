@@ -16,6 +16,8 @@ $ scripts/extract_names.py -h
 import argparse
 from argparse import ArgumentParser, Namespace
 
+from typing import Any, List, Dict
+
 from rdabase import (
     path_to_file,
     file_name,
