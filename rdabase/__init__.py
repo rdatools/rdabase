@@ -24,6 +24,7 @@ from .approxequal import (
 from .geoutils import GeoID, study_unit, unit_id
 from .graph import Graph, is_connected, read_mods
 from .population import populations, total_population, calc_population_deviation
+from .union_find import StrUnionFind, IntUnionFind
 from .energy import (
     mkPoints,
     mkAdjacencies,

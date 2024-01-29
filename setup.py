@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="rdabase",
-    version="2.1.0",
+    version="2.2.0",
     description="Redistricting analytics data",
     url="https://github.com/rdatools/rdabase",
     author="alecramsay",
