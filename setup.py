@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="rdabase",
-    version="2.2.0",
+    version="2.3.0",
     description="Redistricting analytics data",
     url="https://github.com/rdatools/rdabase",
     author="alecramsay",
@@ -11,11 +11,6 @@ setup(
     packages=[
         "rdabase",
     ],
-    install_requires=[
-        "fiona",
-        "geopandas",
-        "libpysal",
-        "shapely",
-    ],
+    install_requires=["fiona", "geopandas", "libpysal", "shapely", "scipy"],
     zip_safe=False,
 )
