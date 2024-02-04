@@ -3,4 +3,5 @@ geopandas
 libpysal
 pytest
 scipy
-shapely
+setuptools
+Shapely

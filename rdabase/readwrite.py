@@ -168,9 +168,16 @@ def read_shapes(shp_file: str, id: str) -> Tuple[dict, Optional[Dict[str, Any]]]
                 meta = source.meta
                 for item in source:
                     obj_id: str = item["properties"][id]
-                    shp: Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon | LinearRing | GeometryCollection = shape(
-                        item["geometry"]
-                    )
+                    shp: (
+                        Point
+                        | MultiPoint
+                        | LineString
+                        | MultiLineString
+                        | Polygon
+                        | MultiPolygon
+                        | LinearRing
+                        | GeometryCollection
+                    ) = shape(item["geometry"])
 
                     shapes_by_id[obj_id] = shp
 
@@ -227,6 +234,18 @@ def smart_open(filename=None) -> Generator[TextIO | TextIO, None, None]:
     finally:
         if fh is not sys.stdout:
             fh.close()
+
+
+### LOGGING ###
+
+
+def echo(message: str = "", *, console: bool = False, log: Any = None) -> None:
+    """Echo a message to the console and/or a logfile."""
+
+    if console:
+        print(message)
+    if log:
+        print(message, file=log)
 
 
 ### END ###
