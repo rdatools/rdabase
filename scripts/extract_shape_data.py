@@ -61,9 +61,8 @@ def main() -> None:
     #
 
     EPSILON: float = 1.0e-12  # NOTE - This overrides the constants.py value
-    THRESHOLD: float = 0.000255  # more or less matches DRA simplification
-    # THRESHOLD: float = 0.00026 # too high
-    # THRESHOLD: float = 0.00025  # too low
+    # THRESHOLD: float = 0.000255  # Original attemt to match DRA simplification; bug made arcs asymmetric
+    THRESHOLD: float = 0.00017  # Arcs symmetric and metrics match DRA
 
     fips_map: Dict[str, str] = STATE_FIPS
     fips: str = fips_map[xx]
