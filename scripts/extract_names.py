@@ -67,6 +67,8 @@ def main() -> None:
             name: str = fields[3]
             print(f"{geoid},{name}")
 
+    pass
+
 
 def parse_args() -> Namespace:
     parser: ArgumentParser = argparse.ArgumentParser(

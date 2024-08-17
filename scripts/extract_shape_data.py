@@ -79,6 +79,10 @@ def main() -> None:
     ### LOAD THE SHAPES ###
 
     geoid_field: str = "GEOID20"
+    # vtd_path: str = path_to_file(["../../local/pg-rawdata", xx]) + file_name(
+    #     ["tl_2020", fips, "vtd20"], "_"
+    # )
+    # NOTE - shapes_dir was not pointing to the right place
     vtd_path: str = path_to_file([shapes_dir, xx]) + file_name(
         ["tl_2020", fips, "vtd20"], "_"
     )
@@ -100,7 +104,7 @@ def main() -> None:
         shp: Polygon | MultiPolygon = item[1]
 
         if simplify:
-            shp = shp.simplify(THRESHOLD, preserve_topology=True)
+            shp = shp.simplify(THRESHOLD, preserve_topology=True)  # type: ignore
 
         center: Tuple[float, float] = find_center(shp)
 
@@ -117,7 +121,11 @@ def main() -> None:
             if neighbor not in vtd_shps:
                 print(f"WARNING: {neighbor} not in vtd_shps!")
                 continue
+
             neighbor_shp: Polygon | MultiPolygon = vtd_shps[neighbor]
+            if simplify:
+                neighbor_shp = neighbor_shp.simplify(THRESHOLD, preserve_topology=True)  # type: ignore
+
             shared_edge = shp.intersection(neighbor_shp)
             shared_border: float = shared_edge.length
 
@@ -129,7 +137,7 @@ def main() -> None:
             arcs[OUT_OF_STATE] = remaining
 
         ch = shp.convex_hull
-        pts: List[Tuple[float, float]] = list(ch.exterior.coords)
+        pts: List[Tuple[float, float]] = list(ch.exterior.coords)  # type: ignore
 
         vtd_abstracts[geoid] = {
             "center": center,
@@ -151,7 +159,7 @@ def main() -> None:
 
 def parse_args() -> Namespace:
     parser: ArgumentParser = argparse.ArgumentParser(
-        description="Copy the shapes for a state."
+        description="Abstract the shapes for a state."
     )
 
     parser.add_argument(

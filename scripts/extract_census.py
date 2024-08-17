@@ -11,6 +11,8 @@ For documentation, type:
 
 $ scripts/extract_census.py -h
 
+TODO - This script needs to be updated for the new vtd_data format.
+
 """
 
 import argparse

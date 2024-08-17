@@ -177,7 +177,9 @@ def read_shapes(shp_file: str, id: str) -> Tuple[dict, Optional[Dict[str, Any]]]
                         | MultiPolygon
                         | LinearRing
                         | GeometryCollection
-                    ) = shape(item["geometry"])
+                    ) = shape(
+                        item["geometry"]
+                    )  # type: ignore
 
                     shapes_by_id[obj_id] = shp
 
