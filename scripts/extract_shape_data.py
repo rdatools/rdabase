@@ -61,9 +61,12 @@ def main() -> None:
     #
 
     EPSILON: float = 1.0e-12  # NOTE - This overrides the constants.py value
-    # THRESHOLD: float = 0.000255  # Original attemt to match DRA simplification; bug made arcs asymmetric!
+    # THRESHOLD: float = 0.00026
+    # THRESHOLD: float = 0.000255  # Original attempt to match DRA simplification
     # THRESHOLD: float = 0.00018  # Metrics don't match DRA
-    THRESHOLD: float = 0.00017  # Metrics do match DRA and arcs are symmetric
+    # THRESHOLD: float = 0.00017  # Metrics match DRA for NC but not NJ
+    THRESHOLD: float = 0.00013  # Metrics match DRA for both NJ and NC
+    # THRESHOLD: float = 0.00010  # Too small for NJ to match DRA
 
     fips_map: Dict[str, str] = STATE_FIPS
     fips: str = fips_map[xx]
@@ -79,10 +82,6 @@ def main() -> None:
     ### LOAD THE SHAPES ###
 
     geoid_field: str = "GEOID20"
-    # vtd_path: str = path_to_file(["../../local/pg-rawdata", xx]) + file_name(
-    #     ["tl_2020", fips, "vtd20"], "_"
-    # )
-    # NOTE - shapes_dir was not pointing to the right place
     vtd_path: str = path_to_file([shapes_dir, xx]) + file_name(
         ["tl_2020", fips, "vtd20"], "_"
     )
