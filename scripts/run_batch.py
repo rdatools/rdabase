@@ -9,11 +9,16 @@ $ scripts/run_batch.py
 
 """
 
+from typing import List
 import os
 from rdabase import ENSEMBLE_STATES
 
-for xx in ENSEMBLE_STATES:
-    if xx == "NC":
+process: List[str] = ENSEMBLE_STATES
+# process = ["NC", "NJ"]
+exclude: List[str] = []
+
+for xx in process:
+    if xx in exclude:
         continue
 
     command: str = f"scripts/extract_shape_data.py -s {xx}"
