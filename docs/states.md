@@ -22,6 +22,10 @@ Other perennial gerrymanders:
 - TX: Ditto
 - VA: Ditto
 - IL: Ditto
+- IN: Ditto
+- AZ: Ditto
 
 - FL: Ditto - Note, these use DRA's corrected precinct shapes (GeoJSON), with intersections
   removed, and converted to a shapefile, before simplifying them.
+
+    

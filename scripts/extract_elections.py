@@ -6,6 +6,7 @@ EXTRACT ELECTION DATA & NORMALIZE IT.
 For example:
 
 $ scripts/extract_elections.py -s NC
+$ scripts/extract_elections.py -s AZ --zipped
 
 For documentation, type:
 
@@ -67,9 +68,21 @@ def main() -> None:
     ### READ THE ELECTIONS CSV & EXTRACT THE DATA ###
 
     election: List[Dict] = list()
-    total_fields: List[str] = [f"Tot_{e}" for e in elections]
-    rep_fields: List[str] = [f"R_{e}" for e in elections]
-    dem_fields: List[str] = [f"D_{e}" for e in elections]
+    total_fields: List[str] = (
+        [f"{e}_Total" for e in elections]
+        if args.zipped
+        else [f"Tot_{e}" for e in elections]
+    )
+    rep_fields: List[str] = (
+        [f"{e}_Rep" for e in elections]
+        if args.zipped
+        else [f"R_{e}" for e in elections]
+    )
+    dem_fields: List[str] = (
+        [f"{e}_Dem" for e in elections]
+        if args.zipped
+        else [f"D_{e}" for e in elections]
+    )
 
     input_path: str = path_to_file([census_dir, xx]) + file_name(
         [cycle, "election", xx + suffix], "_", "csv"
@@ -116,6 +129,9 @@ def parse_args() -> Namespace:
         help="The two-character state code (e.g., NC)",
         type=str,
     )
+    parser.add_argument(
+        "--zipped", dest="zipped", action="store_true", help="New zipped data format"
+    )  # The prefix became a suffix
     parser.add_argument(
         "-v", "--verbose", dest="verbose", action="store_true", help="Verbose mode"
     )

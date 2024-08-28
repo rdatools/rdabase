@@ -46,7 +46,7 @@ def main() -> None:
         "scripts/join_data.py -s {xx}",
         "scripts/extract_shape_data.py -s {xx}",
         "scripts/extract_graph.py -s {xx} {adds_flag}",
-        "scripts/extract_metadata.py -s {xx}",
+        # "scripts/extract_metadata.py -s {xx}", LEGACY
     ]
 
     for command in commands:
