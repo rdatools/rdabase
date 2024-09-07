@@ -36,7 +36,9 @@ def load_graph(graph_path: str) -> Dict[str, List[str]]:
     return graph
 
 
-def load_metadata(xx: str, data_path: str) -> Dict[str, Any]:
+def load_metadata(
+    xx: str, data_path: str, plan_type: str = "congress"
+) -> Dict[str, Any]:
     """Load scoring-specific metadata for a state."""
 
     ### INFER COUNTY FIPS CODES ###
@@ -52,7 +54,7 @@ def load_metadata(xx: str, data_path: str) -> Dict[str, Any]:
     ### GATHER METADATA ###
 
     C: int = COUNTIES_BY_STATE[xx]
-    D: int = DISTRICTS_BY_STATE[xx]["congress"]
+    D: int = DISTRICTS_BY_STATE[xx][plan_type]
 
     county_to_index: Dict[str, int] = {county: i for i, county in enumerate(counties)}
 
