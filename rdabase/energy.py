@@ -199,8 +199,8 @@ def get_centroids(
     for site in range(top + 1):
         persite: List[IndexedWeightedAssignment] = bysite[site]
         total: float = sum(a.pop for a in persite)
-        assert len(persite) > 0
-        assert total != 0
+        assert len(persite) > 0, "Empty district: no precincts"
+        assert total != 0, "Empty district: zero population"
         lat: float = sum(points[a.point].ll.lat * a.pop for a in persite) / total
         long: float = sum(points[a.point].ll.long * a.pop for a in persite) / total
         cs.append(LatLong(lat, long))
