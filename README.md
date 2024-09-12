@@ -6,7 +6,7 @@ Redistricting analytics data &amp; shared code
 To get the data locally, clone the repository:
 
 ```bash
-$ git clone https://github.com/alecramsay/rdabase
+$ git clone https://github.com/rdatools/rdabase
 $ cd rdabase
 ```
 
