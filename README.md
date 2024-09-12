@@ -10,7 +10,13 @@ $ git clone https://github.com/alecramsay/rdabase
 $ cd rdabase
 ```
 
-To use the shared code, install the package:
+To run the scripts, install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+To use the shared code in another project, install the package:
 
 ```bash
 $ pip install rdabase
