@@ -130,7 +130,7 @@ def index_pairs(
 def index_assignments(
     assignments: List[Assignment],
     offset_by_geoid: Dict[str, int],
-    pop_by_geoid: Dict[str, int],
+    pop_by_geoid: Dict[str, float],
 ) -> List[IndexedWeightedAssignment]:
     """Index precinct assignments to districts by GEOID offset."""
 
@@ -139,7 +139,7 @@ def index_assignments(
         indexed: IndexedWeightedAssignment = IndexedWeightedAssignment(
             site=int(p.district) - 1,
             point=offset_by_geoid[p.geoid],
-            pop=float(pop_by_geoid[p.geoid]),
+            pop=pop_by_geoid[p.geoid],
         )
         indexed_assignments.append(indexed)
 
