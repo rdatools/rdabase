@@ -39,6 +39,7 @@ class IndexedWeightedAssignment(NamedTuple):
 def mkPoints(
     data: Dict[str, Dict[str, str | int]],  # indexed by GEOID
     shapes: Dict[str, Any],
+    epsilon: float = 0.01,
 ) -> List[Point]:
     """Join population from precinct data with x,y location from precinct shapes by GEOID."""
 
@@ -46,7 +47,9 @@ def mkPoints(
 
     for geoid, values in data.items():
         loc: LatLong = LatLong(shapes[geoid]["center"][1], shapes[geoid]["center"][0])
-        point: Point = Point(geoid=geoid, pop=int(values["TOTAL_POP"]), ll=loc)
+        point: Point = Point(
+            geoid=geoid, pop=float(max(epsilon, values["TOTAL_POP"])), ll=loc
+        )
 
         points.append(point)
 
