@@ -1,0 +1,23 @@
+{
+    "census_suffix": "",
+    "geoid": "GEOID20",
+    "total": "T_20_CENS_Total",
+    "demos": [
+        "V_20_VAP_Total",
+        "V_20_VAP_White",
+        "V_20_VAP_Hispanic",
+        "V_20_VAP_Black",
+        "V_20_VAP_Native",
+        "V_20_VAP_Asian",
+        "V_20_VAP_Pacific"
+    ],
+    "election_suffix": "",
+    "elections": [
+        "E_20_PRES",
+        "E_20_SEN",
+        "E_18_GOV",
+        "E_18_AG",
+        "E_16_SEN",
+        "E_16_PRES"
+    ]
+}

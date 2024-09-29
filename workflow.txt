@@ -1,0 +1,17 @@
+--------
+WORKFLOW
+--------
+
+(1) Unzip the census and election files in the local clone of vtd_data.
+    Rename them '2020_census_{xx}.csv' and '2020_election_{xx}.csv', respectively.
+
+(2) Create a config file for the state, modeled on 'XX_2020_config.json'.
+    Save it in the 'data/{xx}/' directory.
+    Make sure the fields in the 'elections' property list the elections used in the composite.
+
+(3) Run the preprocessing script:
+
+    scripts/preprocess_state.py -s {xx} --zipped --nograph
+
+
+--------

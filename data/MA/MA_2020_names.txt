@@ -1,4 +1,3 @@
-
 GEOID,NAME
 25001000107,Barnstable Town Precinct 1
 25001000108,Barnstable Town Precinct 10

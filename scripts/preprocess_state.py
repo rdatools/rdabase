@@ -7,6 +7,7 @@ For example:
 
 $ scripts/preprocess_state.py -s NC
 $ scripts/preprocess_state.py -s NY -a
+$ scripts/preprocess_state.py -s CO --zipped
 
 For documentation, type:
 
@@ -37,6 +38,8 @@ def main() -> None:
     #
 
     adds_flag: str = "-a" if adds else ""
+    zipped_flag: str = "--zipped" if args.zipped else ""
+    make_graph: bool = not args.no_graph
 
     ### RUN THE SCRIPTS ###
 
@@ -44,13 +47,15 @@ def main() -> None:
         "scripts/extract_census.py -s {xx}",
         "scripts/extract_elections.py -s {xx}",
         "scripts/join_data.py -s {xx}",
-        "scripts/extract_shape_data.py -s {xx}",
-        "scripts/extract_graph.py -s {xx} {adds_flag}",
+        "scripts/extract_shape_data.py -s {xx} {zipped_flag}",
+        # "scripts/extract_graph.py -s {xx} {adds_flag}",
         # "scripts/extract_metadata.py -s {xx}", LEGACY
     ]
+    if make_graph:
+        commands.append("scripts/extract_graph.py -s {xx} {adds_flag}")
 
     for command in commands:
-        command = command.format(xx=xx, adds_flag=adds_flag)
+        command = command.format(xx=xx, adds_flag=adds_flag, zipped_flag=zipped_flag)
         print(f"{command}")
         os.system(command)
 
@@ -69,6 +74,12 @@ def parse_args() -> Namespace:
     )
     parser.add_argument(
         "-a", "--adds", dest="adds", action="store_true", help="Additional adjacencies"
+    )
+    parser.add_argument(
+        "--zipped", dest="zipped", action="store_true", help="New zipped data format"
+    )
+    parser.add_argument(
+        "--nograph", dest="no_graph", action="store_true", help="Don't generate a graph"
     )
 
     parser.add_argument(

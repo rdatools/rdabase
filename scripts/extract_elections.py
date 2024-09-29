@@ -12,7 +12,8 @@ For documentation, type:
 
 $ scripts/extract_elections.py -h
 
-TODO - This script needs to be updated for the new vtd_data format.
+NOTE - This script needs to be updated for the new vtd_data format, or
+       the workflow needs to get the input data into the old format.
 
 """
 
