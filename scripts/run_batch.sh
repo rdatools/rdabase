@@ -25,7 +25,6 @@ scripts/extract_elections.py -s NY --zipped
 scripts/join_data.py -s NY
 scripts/extract_shape_data.py -s NY
 
-# Check missing races and how to handle them
 scripts/extract_census.py -s CA
 scripts/extract_elections.py -s CA --zipped
 scripts/join_data.py -s CA

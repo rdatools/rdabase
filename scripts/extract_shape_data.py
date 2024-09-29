@@ -31,6 +31,8 @@ from rdabase import (
     shapes_dir,
     cycle,
     OUT_OF_STATE,
+    study_unit,
+    unit_id,
 )
 
 
@@ -81,9 +83,11 @@ def main() -> None:
 
     ### LOAD THE SHAPES ###
 
-    geoid_field: str = "GEOID20"
+    unit = study_unit(xx)
+    unit_label: str = "vtd20" if unit == "vtd" else unit
+    geoid_field: str = unit_id(unit)
     vtd_path: str = path_to_file([shapes_dir, xx]) + file_name(
-        ["tl_2020", fips, "vtd20"], "_"
+        ["tl_2020", fips, unit_label], "_"
     )
 
     if xx == "FL":  # Use DRA's corrected precincts for Florida
