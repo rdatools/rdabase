@@ -30,3 +30,9 @@ scripts/extract_elections.py -s CA --zipped
 scripts/join_data.py -s CA
 scripts/extract_shape_data.py -s CA
 
+# Missed on first run
+scripts/extract_census.py -s TN
+scripts/extract_elections.py -s TN --zipped
+scripts/join_data.py -s TN
+scripts/extract_shape_data.py -s TN
+
