@@ -9,7 +9,7 @@ WORKFLOW
     Save it in the 'data/{xx}/' directory.
     Make sure the fields in the 'elections' property list the elections used in the composite.
 
-(3) Run the preprocessing script:
+(3) Run the preprocessing scripts (but don't generate a graph which already exists):
 
     scripts/preprocess_state.py -s {xx} --zipped --nograph
 
