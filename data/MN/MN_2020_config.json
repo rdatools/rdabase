@@ -15,9 +15,9 @@
     "elections": [
         "E_16_PRES",
         "E_20_PRES",
-        "E_xx_SEN",
-        "E_yy_SEN",
-        "E_zz_GOV",
-        "E_zz_AG"
+        "E_20_SEN",
+        "E_18_SEN",
+        "E_18_GOV",
+        "E_18_AG"
     ]
 }

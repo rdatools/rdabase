@@ -7,7 +7,7 @@ For example:
 
 $ scripts/preprocess_state.py -s NC
 $ scripts/preprocess_state.py -s NY -a
-$ scripts/preprocess_state.py -s CO --zipped
+$ scripts/preprocess_state.py -s CO --zipped --nograph
 
 For documentation, type:
 
@@ -45,9 +45,9 @@ def main() -> None:
 
     commands: List[str] = [
         "scripts/extract_census.py -s {xx}",
-        "scripts/extract_elections.py -s {xx}",
+        "scripts/extract_elections.py -s {xx} {zipped_flag}",
         "scripts/join_data.py -s {xx}",
-        "scripts/extract_shape_data.py -s {xx} {zipped_flag}",
+        "scripts/extract_shape_data.py -s {xx}",
         # "scripts/extract_graph.py -s {xx} {adds_flag}",
         # "scripts/extract_metadata.py -s {xx}", LEGACY
     ]
@@ -57,7 +57,7 @@ def main() -> None:
     for command in commands:
         command = command.format(xx=xx, adds_flag=adds_flag, zipped_flag=zipped_flag)
         print(f"{command}")
-        os.system(command)
+        # os.system(command)
 
 
 def parse_args() -> Namespace:

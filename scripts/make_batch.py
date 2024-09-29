@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
 
 """
-RUN A BATCH OF COMMANDS
+MAKE A BATCH OF COMMANDS
 
 To run:
 
-$ scripts/run_batch.py
+$ scripts/make_batch.py
 
 """
 
 from typing import List
 import os
-from rdabase import ENSEMBLE_STATES
 
-process: List[str] = ENSEMBLE_STATES
-# process = ["NC", "NJ"]
+print(f"#!/bin/bash")
+print()
+
+process: List[str] = ["MA", "MN", "MO", "WA", "CA", "NY"]
 exclude: List[str] = []
 
 for xx in process:
     if xx in exclude:
         continue
 
-    command: str = f"scripts/extract_shape_data.py -s {xx}"
+    command: str = f"scripts/preprocess_state.py -s {xx} --zipped --nograph"
     command = command.format(xx=xx)
     print(command)
     os.system(command)
+    print()
 
 
 ### END ###
