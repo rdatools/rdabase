@@ -31,7 +31,7 @@ These pages describe each dataset:
 - [Shapes](./docs/shapes.md): Shape properties by precinct.
 - [Graph](./docs/graph.md): Precinct adjacency graph.
 
-At present, data has been extracted for the 26 states with 7 or more congressional districts:
+At present, data has been extracted for the 24 states with 7 or more congressional districts:
 AL, AZ, CA, CO, FL, GA, IL, IN, MD, MA, MI, MN, MO, NJ, NY, NC, OH, PA, SC, TN, TX, VA, WA, and WI.
 FL uses DRA's corrected precinct shapes (GeoJSON), with intersections removed, and converted to a shapefile, before simplifying them.
 In the future, we may extract data for other states.
